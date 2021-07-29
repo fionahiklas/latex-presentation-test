@@ -5,6 +5,19 @@
 Trying out LaTeX for creating presentation files rather than the likes of PowerPoint or LibreOffice
 
 
+### Prerequisites 
+
+* [Vagrant](https://www.vagrantup.com)
+* [VirtualBox](https://www.virtualbox.org)
+* The `vagrant-vbguest` plugin
+
+```
+vagrant plugin install vagrant-vbguest
+```
+
+
+
+
 ## Notes
 
 ### Installing LaTeX
@@ -110,3 +123,15 @@ tlmgr --usermode install beamer
 
 * [Beamer, template for presentations](https://ctan.org/pkg/beamer?lang=en)
 * [Beamer tutorial](https://www.overleaf.com/learn/latex/Beamer_Presentations:_A_Tutorial_for_Beginners_(Part_1)%E2%80%94Getting_Started)
+* [Minimal Installation](https://tex.stackexchange.com/questions/397174/minimal-texlive-installation)
+* [Acquire net install](https://www.tug.org/texlive/acquire-netinstall.html)
+* [Installer instructions](https://www.tug.org/texlive/doc/texlive-en/texlive-en.html)
+
+
+### Vagrant
+
+* [Ubuntu Focal 20.04 box](https://app.vagrantup.com/ubuntu/boxes/focal64)
+
+
+
+

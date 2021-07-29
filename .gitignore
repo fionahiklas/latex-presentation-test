@@ -1,0 +1,15 @@
+# Backup
+*.bak
+*~
+.\#*
+\#*
+
+# Project files
+.idea
+*.iml
+
+# Package files
+*.rpm
+
+# Vagrant
+.vagrant

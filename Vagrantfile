@@ -21,8 +21,9 @@ Vagrant.configure(2) do |config|
     echo "Starting install"
     apt update
     apt upgrade -y
-    apt install -y wget perl
+    apt install -y wget perl perl-doc li
     cd /home/vagrant
+    cp /vagrant/texlive.profile .
     wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz 
   SHELL
 end

@@ -9,11 +9,44 @@ Trying out LaTeX for creating presentation files rather than the likes of PowerP
 
 * [Vagrant](https://www.vagrantup.com)
 * [VirtualBox](https://www.virtualbox.org)
+* [XQuartz](https://www.xquartz.org) 
 * The `vagrant-vbguest` plugin
 
 ```
 vagrant plugin install vagrant-vbguest
 ```
+
+
+## Getting started
+
+### Vagrant VM
+
+Run the following to start the VM
+
+```
+vagrant up
+```
+
+Connect using this command (you need to have a local X server, for Mac that is 
+XQuartz, for Linux there should be a built-in version, for Windows, probably 
+[cygwin](https://www.cygwin.com) is the best bet)
+
+```
+vagrant ssh -- -Y
+```
+
+
+### LaTex
+
+Simple test
+
+```
+latex small2e-test.tex
+xdvi small2e-test.dvi
+```
+
+This should display a window showing a formatted document
+
 
 
 
@@ -107,12 +140,70 @@ Trying the install again and got this error
 
 ```
 tlmgr --usermode install beamer
-
-/usr/bin/tlmgr: unexpected return value from verify_checksum: -5
 ```
 
 
-### Installing Beamer
+### Trying a simple beamer document
+
+Having installed beamer ran latex and got the following
+
+```
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./beamer-test.tex
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-07-12>
+(/home/vagrant/texmf/tex/latex/beamer/beamer.cls
+Document Class: beamer 2021/05/26 v3.63 A class for typesetting presentations
+(/home/vagrant/texmf/tex/latex/beamer/beamerbasemodes.sty
+
+! LaTeX Error: File `etoolbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+```
+
+Fixed this error by running this command
+
+```
+tlmgr install --usermode etoolbox
+```
+
+Now getting different output
+
+```
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./beamer-test.tex
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-07-12>
+(/home/vagrant/texmf/tex/latex/beamer/beamer.cls
+Document Class: beamer 2021/05/26 v3.63 A class for typesetting presentations
+(/home/vagrant/texmf/tex/latex/beamer/beamerbasemodes.sty
+(/home/vagrant/texmf/tex/latex/etoolbox/etoolbox.sty)
+(/home/vagrant/texmf/tex/latex/beamer/beamerbasedecode.sty))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifpdf.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty))
+(/home/vagrant/texmf/tex/latex/beamer/beamerbaseoptions.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/size11.clo)
+
+! LaTeX Error: File `pgfcore.sty' not found.
+```
+
+Suggestion from a [post](https://tex.stackexchange.com/questions/19334/installing-pgfcore-sty) is to install the complete `pgf` package.
+
+That seems to work, but now `xcolor.sty` can't be found.  Fixed by installing
+`xcolor` then the `translator` packages.  Now seems to complete.
+
+
+
+
+
 
 
 

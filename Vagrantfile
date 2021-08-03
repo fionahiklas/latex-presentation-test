@@ -9,6 +9,7 @@ Vagrant.configure(2) do |config|
   
   config.vm.network "forwarded_port", guest: 8080, host: 9001
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  config.vm.synced_folder ENV["HOME"], "/vagrant_home", type: "virtualbox"
   
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
@@ -21,9 +22,10 @@ Vagrant.configure(2) do |config|
     echo "Starting install"
     apt update
     apt upgrade -y
-    apt install -y wget perl perl-doc libxaw7 ghostscript ghostscript-x
-    cd /home/vagrant
-    cp /vagrant/texlive.profile .
-    wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz 
+    apt install -y wget perl perl-doc libxaw7 ghostscript ghostscript-x emacs
+    mkdir /usr/local/texlive
+    chown -R vagrant.vagrant /usr/local/texlive
+    su -c /vagrant/install-tex.sh - vagrant
+    chown -R root.root /usr/local/texlive
   SHELL
 end

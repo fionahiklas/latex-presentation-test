@@ -7,3 +7,5 @@ cd install-tl-20*
 ./intall-tl --profile /vagrant/texlive.profile
 
 source /vagrant/setup-user-packages.sh
+
+exit 0
